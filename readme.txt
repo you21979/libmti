@@ -1,10 +1,6 @@
-libmti
-======
-
-malloc trace information
-
 -----------------------------------------------------------
 mti library 簡易説明書
+				you21979
 -----------------------------------------------------------
 
 機能
@@ -74,8 +70,4 @@ mti library 簡易説明書
 mti.c	trace info regist and access routine
 mtil.c	interface layer
 msl.c	safe layer
-
-
-
-
 
