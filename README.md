@@ -3,11 +3,12 @@ libmti
 
 malloc trace information
 
------------------------------------------------------------
-mti library 簡易説明書
------------------------------------------------------------
+2001年頃に作った骨董品
+mallocをチェーンでつないでメモリリークをトレースするために作った気がする
+
 
 機能
+====
 	メモリーリークの検出
 	バッファーオーバーランの検出（mallocでアロケートした領域のみ）
 	２重開放バグの検出(コンソールに表示される)
@@ -22,6 +23,7 @@ mti library 簡易説明書
 
 
 動作原理
+========
 	調査対象がソースファイル *.c の場合
 	コンパイル時にマクロによって別のデバッグ用関数に置き換える
 	malloc		->	mt_malloc
@@ -34,16 +36,19 @@ mti library 簡易説明書
 	メモリ管理機能のみ利用できる
 
 コンパイル方法
+==============
 	コマンドラインから
 	$ make
 	でコンパイルできます。
 
 組み込み方法
+============
 	#include "memdbg.h"
 	を調べたいソースファイルに組み込む
 
 
 トレース方法
+============
 	任意の場所に以下を組み込む
 	{
 	char buf[1024000];
@@ -64,6 +69,7 @@ mti library 簡易説明書
 	}
 
 リンク方法
+==========
 	memdbg.aをmakefileに追加
 	gcc -o sample1 sample1.c memdbg.a
 
@@ -71,9 +77,17 @@ mti library 簡易説明書
 
 ----------------------------------------------------------------
 
-mti.c	trace info regist and access routine
-mtil.c	interface layer
-msl.c	safe layer
+mti.c
+=====
+trace info regist and access routine
+
+mtil.c
+======
+interface layer
+
+msl.c
+=====
+safe layer
 
 
 
