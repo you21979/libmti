@@ -60,15 +60,15 @@ static const char *___mti_check_header___ = "MTI";	/* mti memory header */
 
 /*
  * name:
- *	mt_regist
+ *	mt_register
  * argument:
  *	size_t size, char *callfunc, char *file, int line
  * return:
  *	void *
  * comment:
- *	memory allocate and memory information regist
+ *	memory allocate and memory information register
  */
-void *mt_regist(size_t size, char *callfunc, char *file, int line)
+void *mt_register(size_t size, char *callfunc, char *file, int line)
 {
 	mti *n, *p;
 
@@ -118,15 +118,15 @@ void *mt_regist(size_t size, char *callfunc, char *file, int line)
 
 /*
  * name:
- *	mt_unregist
+ *	mt_unregister
  * argument:
  *	void *addr
  * return:
  *	int
  * comment:
- *	memory free and memory information unregist
+ *	memory free and memory information unregister
  */
-int mt_unregist(void *addr)
+int mt_unregister(void *addr)
 {
 	mti *n;
 
@@ -137,10 +137,10 @@ int mt_unregist(void *addr)
 
 	n = mt_get_addr_by_mti(addr);
 	if(n == NULL){
-		/* non regist addr */
+		/* non register addr */
 		fprintf(stderr, "%s\n%s\n",
 			"Warrning: buffer addr in non mti header",
-			"if destroy memory table ? or mti regist no use allocate buffer"
+			"if destroy memory table ? or mti register no use allocate buffer"
 		);
 		free(addr);	/* destroy memory tbl? */
 		return -1;

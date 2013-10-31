@@ -18,7 +18,7 @@
 int msl_alloc(void **buf, size_t size)
 {
 #ifdef DEBUG
-	*buf = mt_regist(size, "msl_alloc", __FILE__, __LINE__);
+	*buf = mt_register(size, "msl_alloc", __FILE__, __LINE__);
 #else
 	*buf = malloc(size);
 #endif
@@ -34,7 +34,7 @@ int msl_free(void **buf)
 		return 0;
 	}
 #ifdef DEBUG
-	mt_unregist(*buf);
+	mt_unregister(*buf);
 #else
 	free(*buf);
 #endif

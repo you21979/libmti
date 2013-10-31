@@ -12,13 +12,13 @@
 /* malloc wrapper */
 void *mt_malloc(size_t size, char *callfunc, char *file, int line)
 {
-	return mt_regist(size, callfunc, file, line);
+	return mt_register(size, callfunc, file, line);
 }
 
 /* free wrapper */
 int mt_free(void *addr)
 {
-	return mt_unregist(addr);
+	return mt_unregister(addr);
 }
 
 /* realloc wrapper */
