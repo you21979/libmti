@@ -55,6 +55,8 @@ char *mt_strdup(char *str, char *callfunc, char *file, int line)
 	return buf;
 }
 
+#define MSG_FORMAT "addr:%p, size:%ld, allocator: %s, file %s at line %d \n"
+
 /* -------------- */
 /* TRACE FUNCTION */
 /* -------------- */
@@ -71,7 +73,7 @@ int mt_buf_print_info(void *addr)
 		return 0;
 	}
 	if(mt_get_addr(m, (void**)&buf, &s, &callfunc, &file, &line) == 0){
-		fprintf(stderr, "addr:%p, size:%d, allocater: %s, file %s at line %d \n", buf, s, callfunc, file, line);
+		fprintf(stderr, MSG_FORMAT, buf, s, callfunc, file, line);
 	}
 	return 0;
 }
@@ -92,7 +94,7 @@ int mt_all_print_info()
 	}
 	while(1){
 		if(mt_get_addr(m, (void**)&buf, &s, &callfunc, &file, &line) == 0){
-			fprintf(stderr, "addr:%p, size:%d, allocater: %s, file %s at line %d \n", buf, s, callfunc, file, line);
+			fprintf(stderr, MSG_FORMAT, buf, s, callfunc, file, line);
 		}
 		if(mt_get_addr_next_info(&m) != 0){
 			break;
@@ -118,7 +120,7 @@ int mt_all_print_info_to_buf(char *data)
 	}
 	while(1){
 		if(mt_get_addr(m, (void**)&buf, &s, &callfunc, &file, &line) == 0){
-			sprintf(tmp, "addr:%p, size:%d, allocater: %s, file %s at line %d \n", buf, s, callfunc, file, line);
+			sprintf(tmp, MSG_FORMAT, buf, s, callfunc, file, line);
 			strcat(data, tmp);
 			mt_buf_memory_dump(buf, "/tmp/ebr_mem_leak_dump.log");
 		}
@@ -151,7 +153,7 @@ int mt_buf_memory_dump(void *addr, const char *filename)
 
 	if(mt_get_addr(m, (void**)&buf, &s, &callfunc, &file, &line) == 0){
 		size_t i;
-		fprintf(fp, "||addr:%p, size:%d, allocater: %s, "
+		fprintf(fp, "||addr:%p, size:%ld, allocator: %s, "
 			"file %s at line %d, over run status :%x, dump start-->||",
 			buf, s, callfunc, file, line, *((unsigned char *)buf + s));
 		for(i=0; i<s; i++){

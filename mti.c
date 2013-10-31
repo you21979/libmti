@@ -146,7 +146,7 @@ int mt_unregist(void *addr)
 		return -1;
 	}
 	if(MTI_CHK_BUF_OVER_RUN(n)){
-		fprintf(stderr, "%s : allocater %s : size %d : %s(%d)\n",
+		fprintf(stderr, "%s : allocator %s : size %ld : %s(%d)\n",
 			"Warrning: buffer over run",
 			n->callfunc, n->size, n->file, n->line
 		);
